@@ -5,15 +5,15 @@ from .forms import LoginForm
 # Create your views here.
 
 def menuitem():
-    menu = {'/gsk/':'ГСК','/news/':'Новости','/forum/':'Форум','/vote/':'Опрос','/l5/':'Электричество','link6':''}
+    menu = {'/app_gsk/':'ГСК','/news/':'Новости','/forum/':'Форум','/vote/':'Опрос','/l5/':'Электричество','link6':''}
     return menu
 
 def gsk(request):
-    gsk='gsk text'
+    gsk='app_gsk text'
     menu = menuitem()
     # return HttpResponse('hello world')
-    return render(request,'gsk/gsk.html', {'menu':menu,'gsk':gsk})#,{'td':td,'th':th})
-    # return render(request,'base.html', {'gsk':gsk})#,{'td':td,'th':th})
+    return render(request,'app_gsk/gsk.html', {'menu':menu,'app_gsk':gsk})#,{'td':td,'th':th})
+    # return render(request,'base.html', {'app_gsk':app_gsk})#,{'td':td,'th':th})
 
 
 
