@@ -1,0 +1,12 @@
+<!-- gsk/gsk.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="display:flex">
+    {#{% include 'gsk/submenu.html' %}#}
+<!--menu:{{menu}}-->
+<!--menu_content:{{menu}}-->
+<!--gsk:{{gsk}}-->
+{% include "gsk/old.html" %}
+</div>
+{% endblock content %}

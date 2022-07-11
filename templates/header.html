@@ -1,0 +1,116 @@
+{% load static %}
+<header role="banner">
+    <a class="screen-reader-text skip-link" href="https://gsk-sm.ru/#maincontent">Skip to content</a>
+    <div id="header">
+        <div class="row m-0">
+            <!--            ГСК «Стройматериалы»-->
+            <div class="col-lg-3 col-md-3">
+                <div class="logowrapper">
+                    <div class="logo">
+                        <h1 class="site-title"><a href="https://gsk-sm.ru/" rel="home">ГСК «Стройматериалы»</a></h1>
+                        <p class="site-description">
+                            Гаражно-строительный кооператив </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-9 padremove">
+                <div class="con_details">
+                    <!--                    над меню-->
+                    <div class="row marremove">
+                        <!--                        +71111111111-->
+                        <div class="top-contact col-lg-4 col-md-4">
+                            <span class="call"><i class="fa fa-phone"></i>+71111111111</span>
+                        </div>
+                        <!--                        gsk-sm@bk.ru-->
+                        <div class="top-contact col-lg-4 col-md-4">
+                            <span class="email"><i class="fas fa-envelope"></i>gsk-sm@bk.ru</span>
+                        </div>
+                        <!--                        login-->
+                        <div class="top-contact col-lg-4 col-md-4">
+                            {#{{ user.username|default:'Guest' }}#}
+                            {% if user.is_authenticated %}
+                            <p style="color:green;">{{ user.username }} авторизован
+                                <a href="{% url 'logout' %}" style="color:orange;text-decoration:underline;">Выйти</a>
+                            </p>
+                            {% else %}
+                            <p style="color:red;">Вы не авторизованы
+                                <a href="{% url 'login' %}" style="color:orange;text-decoration:underline;">Авторизоваться</a>
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="menubox">
+                    <div class="row m-0">
+                        <div class="menu1 col-lg-10 col-md-9 col-8 offset-1">
+                            <div class="toggle-nav mobile-menu">
+                                <button onclick="vw_automobile_lite_menu_open_nav()" class="responsivetoggle"><i
+                                        class="fas fa-bars"></i><span class="screen-reader-text">Open Button</span>
+                                </button>
+                            </div>
+                            <div id="mySidenav" class="nav sidenav">
+                                <nav id="site-navigation" class="main-navigation" role="navigation"
+                                     aria-label="Top Menu">
+                                    <div class="main-menu clearfix">
+                                        <ul id="menu-glavnoe-menyu" class="clearfix mobile_nav sf-js-enabled sf-arrows"
+                                            style="touch-action: pan-y;">
+                                            <!--                                            {#{% for k,v in menu.items %}#}-->
+                                            <li id="menu-item-30"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-38">
+                                                <a href="/admin/" target="blank">Admin</a></li>
+                                            <li id="menu-item-31"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-38">
+                                                <a href="/">Гск</a></li>
+                                            <!--                                            {#{% endfor %}#}-->
+                                            <li id="menu-item-32"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-38">
+                                                <a href="/news/">Новости</a></li>
+                                            <li id="menu-item-33"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-38">
+                                                <a href="/forum/">Форум</a></li>
+                                            <li id="menu-item-34"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-38">
+                                                <a href="/vote/">Опрос</a></li>
+                                            <li id="menu-item-35"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-38">
+                                                <a href="/power/">Свет</a></li>
+                                        </ul>
+                                    </div>
+                                    <a href="javascript:void(0)" class="closebtn mobile-menu"
+                                       onclick="vw_automobile_lite_menu_close_nav()"><i class="fas fa-times"></i><span
+                                            class="screen-reader-text">Close Button</span></a>
+                                </nav>
+                            </div>
+                        </div>
+
+                        <!--                        <div class="col-lg-1 col-md-2 col-4 p-0">-->
+                        <!--                            <div class="search-box">-->
+                        <!--                                <span><a href="https://gsk-sm.ru/#"><i class="fas fa-search"></i></a></span>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+
+                        <!--                        <div class="serach_outer">-->
+                        <!--                            <div class="closepop"><a href="https://gsk-sm.ru/#maincontent"><i-->
+                        <!--                                    class="fa fa-window-close"></i></a></div>-->
+                        <!--                            <div class="serach_inner">-->
+                        <!--                                <form role="search" method="get" class="search-form" action="https://gsk-sm.ru/">-->
+                        <!--                                    <label>-->
+                        <!--                                        <span class="screen-reader-text">Search for:</span>-->
+                        <!--                                        <input type="search" class="search-field" placeholder="Найти" value="" name="s">-->
+                        <!--                                    </label>-->
+                        <!--                                    <input type="submit" class="search-submit" value="Искать">-->
+                        <!--                                </form>-->
+                        <!--                            </div>-->
+                        <!--                        </div>-->
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div id="preloader" style="display: none;">
+        <div id="status" style="display: none;">
+            <img src="{% static 'dots.gif' %}" alt="" role="img">
+        </div>
+    </div>
+</header>
