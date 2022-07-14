@@ -1,0 +1,41 @@
+{# djcode/pySite/templates/news/news.html #}
+
+{% extends 'base.html' %} <!-- подключаем базовый шаблон -->
+
+{% block title %}News{% endblock %}
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'news:news' %}">>Новости</a>
+{% endblock %}
+{% block content %}
+<div style="display:flex">
+    {#{% include 'news/submenu.html' %}#}
+    <!--    <a href="https://www.unix-lab.org/posts/django-first-steps/">news.html</a>-->
+    <div id="post">
+        {% for post in posts %} <!-- итерация по всем постам -->
+        <div style="margin:10px">
+<!--            {% if post.photo %}-->
+<!--            <img class="img-article-left thumb" src="{{post.photo.url}}" width="100" align="left"-->
+<!--                 style="margin:10px">-->
+<!--            {% endif %}-->
+            {% if post.file %}
+            <img class="img-article-left thumb" src="{{post.file.url}}" width="100" align="left"
+                 style="margin:10px">
+            {% endif %}
+            <h4>
+                <!--                <a href="{% url 'news:one_new' post.id %}">{{ post.title }}</a>-->
+                <a href="{% url 'news:one_new' post.slug %}">{{ post.title }}</a>
+            </h4>
+            {{ post.time_update }}
+            {{ post.author }}
+            <br>
+            <!-- обрезаем посты, вывод по 80 слов -->
+            {{ post.body|truncatewords:50|safe }}
+            <!-- ссылаемся на полный текст поста -->
+            <!--    <a href="{% url 'news:one_new' post.id %}">Читать полностью&raquo;</a>-->
+            <a href="{% url 'news:one_new' post.slug %}">Читать полностью&raquo;</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

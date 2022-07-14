@@ -1,0 +1,22 @@
+<!--{% extends "base.html" %}-->
+<!--{% load cms_tags %}-->
+
+<!--{% block title %}{% page_attribute "page_title" %}{% endblock title %}-->
+
+<!--{% block content %}-->
+<!--{% load static %}-->
+
+<!--<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">-->
+
+<!--{% if latest_question_list %}-->
+<!--    <ul>-->
+<!--    {% for question in latest_question_list %}-->
+<!--        question.id={{ question.id }}-->
+<!--        <li><a href="{% url 'voteuser:detail' question.id %}">question.question_text={{ question.question_text }}</a></li>-->
+<!--    {% endfor %}-->
+<!--    </ul>-->
+<!--{% else %}-->
+<!--    <p>No polls are available.</p>-->
+<!--{% endif %}-->
+<!--{% endblock content %}-->
+index.html

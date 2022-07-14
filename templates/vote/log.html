@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{#{% load cms_tags %}#}
+{% block title %}{#{% page_attribute "page_title" %}#}{% endblock title %}
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'vote:log' %}">>log</a>
+<a href="{% url 'vote:votes' %}">(Опрос)</a>
+
+{% endblock %}
+{% block content %}
+<div style="margin:10px">
+    LogAllView<br>
+<!--    <br>log:{{log}}-->
+<!--    <br>request.get={{ request.GET }}-->
+<!--    <br>log_vote_list|length={{ log_vote_list|length }}-->
+<!--    <br>log_vote_list.count={{ log_vote_list.count }}-->
+<!--    <br>log_vote_list.filter={{ log_vote_list.filter }}-->
+<!--    <br>log_vote_list.distinct={{ log_vote_list.distinct.filter }}-->
+<!--    <br>log_vote_list={{ log_vote_list }}-->
+<!--    choice_text-->
+    <table>
+        <tr>
+            {% for log in log_vote_list %}
+<!--            <br>log.date_vote={{log.date_vote|date:"F j, Y"}}-->
+            <th style="padding:1px"><a href="?order={{ column.name_toggled }}">{{ column }}</a></th>
+            {% endfor %}
+        </tr>
+        {% for row in table.rows %}
+        <tr>
+            {% for value in row %}
+            <td style="padding:1px">{{ value }}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    <table border="1">
+        <tr>
+            <th style="padding:1px"><a href="?order=id">log.id</a></th>
+            <th style="padding:1px"><a href="?order=date_vote">log.date_vote</a></th>
+            <th style="padding:1px"><a href="?order=question">log.question</a></th>
+            <th style="padding:1px"><a href="?order=author">log.author</a></th>
+            <th style="padding:1px"><a href="?order=choice_text">log.choice_text</a></th>
+        </tr>
+<!--        |dictsort:"author"-->
+        {% for log in log_vote_list.all %}
+        <tr>
+            <td style="padding:1px">{{ log.id }}</td>
+            <td style="padding:1px">{{ log.date_vote }}</td>
+            <td style="padding:1px">{{ log.question }}</td>
+            <td style="padding:1px">{{ log.author }}</td>
+            <td style="padding:1px">{{ log.choice_text }}</td>
+        </tr>
+        <!--    <br>-->
+        {% endfor %}
+    </table>
+</div>
+{% endblock content %}

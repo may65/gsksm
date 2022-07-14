@@ -1,0 +1,9 @@
+{% extends 'base.html' %} <!-- подключаем базовый шаблон -->
+line.html<br>
+{% block title %}power{% endblock %}
+{% block content %}
+<!--<div style="display:flex">-->
+    {% include 'power/submenu.html' %}
+    <br>line</br>
+<!--</div>-->
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %} <!-- подключаем базовый шаблон -->
+list.html<br>
+{% block title %}power{% endblock %}
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'power' %}">>Свет</a>
+{% endblock %}
+{% block content %}
+    {% include 'power/submenu.html' %}
+<div style="margin:10px">
+
+    <table border="solid" style="padding:10px">
+    <tr>
+        {% for h in th %}
+        <th style="padding: 1px;">{{h}}</th>
+        {% endfor %}
+    </tr>
+    {% for d in td %}
+    <tr>
+        {% for k,v in d.fields.items %}
+        <td style="padding: 1px;">{{v}}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+</table>
+</div>
+
+{% endblock %}

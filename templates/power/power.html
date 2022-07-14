@@ -1,0 +1,14 @@
+{% extends 'base.html' %} <!-- подключаем базовый шаблон -->
+power.html<br>
+{% block title %}power{% endblock %}
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'power' %}">>Свет</a>
+{% endblock %}
+{% block content %}
+<!--<div style="display:flex">-->
+    <br>{% include 'power/submenu.html' %}
+<!--    <br>power</br>-->
+<!--</div>-->
+{% endblock content %}
+

@@ -1,0 +1,36 @@
+{# /templates/news/one_new.html #}
+
+{% extends 'base.html' %}
+
+<!-- отображать название поста как title страницы-->
+{% block title %}{{ title }}{% endblock %}
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'news:news' %}">>Новости></a>
+<a href="{% url 'news:one_new' post_slug %}">>{{post_slug}}</a>
+{% endblock %}
+{% block content %}
+<div style="display:flex">
+    {% include 'news/submenu.html' %}
+
+    <!--    <br>-->
+    <!--    <h1>{{ title }}</h1>-->
+    <div>
+        <p></p>
+        <h1>{{ title }}</h1>
+        Дата: {{ time_update }}
+        Автор: {{ user }}</p>
+<!--        {% if photo %}-->
+<!--        <a href="{{photo.url}}" target="blank">-->
+<!--            <img class="img-article-left" src="{{photo.url}}" width="200" align="left" style="margin:10px">-->
+<!--        </a>-->
+<!--        {% endif %}-->
+        {% if file %}
+        <a href="{{file.url}}" target="blank">
+            <img class="img-article-left" src="{{file.url}}" width="200" align="left" style="margin:10px">
+        </a>
+        {% endif %}
+        {{ body|safe|escape|linebreaks}}
+    </div>
+</div>
+{% endblock %}
