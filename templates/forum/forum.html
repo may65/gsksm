@@ -1,0 +1,44 @@
+{% extends 'base.html' %} <!-- подключаем базовый шаблон -->
+forum/forum.html<br>
+{% block title %}Forum{% endblock %}
+<li><a href="/forum/">{% url 'forum' %}</a></li>
+<li class="last"></li>
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'forum' %}">>Форумы</a>
+{% endblock %}
+{% block content %}
+<!--<br></br>https://python-scripts.com/category/django-beginners-->
+<!--<div style="display:flex;margin:10px">-->
+<div style="margin:10px">
+    {#{% include 'forum/submenu.html' %}#}
+    <!--<br/><a href="{{ forum.get_absolute_url }}create/">"Add New Topic"</a>-->
+    {% for forum in forums %}
+    <h4>
+    <a href="{% url 'forum_id' forum.id %}">{{forum.forum}}</a>
+    </h4>
+    {{forum.date}}
+    <p>{{forum.desc}}</p>
+    {% endfor %}
+
+    {% comment %}
+    <!--    <table border="1px">-->
+    <!--        <tr>-->
+    <!--            {% for h in th %}-->
+    <!--            <th>{{h}}</th>-->
+    <!--            {% endfor %}-->
+    <!--        </tr>-->
+    <!--        {% for k1,v1 in td.items %}-->
+    <!--        &lt;!&ndash;    <br>k1:{{k1}} / v1{{v1}}&ndash;&gt;-->
+    <!--        <tr>-->
+    <!--            <td><a href="{% url 'forum_id' k1 %}">{{k1}}</a></td>-->
+    <!--            {% for k2,v2 in v1.items %}-->
+    <!--            &lt;!&ndash;            <br>k2:{{k2}} / v2:{{v2}}&ndash;&gt;-->
+    <!--            <td>{{v2}}</td>-->
+    <!--            {% endfor %}-->
+    <!--        </tr>-->
+    <!--        {%endfor%}-->
+    <!--    </table>-->
+    {% endcomment %}
+</div>
+{% endblock %}

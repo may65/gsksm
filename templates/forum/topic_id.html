@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+forum/topic_id.html<br>
+
+{% block title %}Topic{% endblock %}
+<li><a href="/forum/">{% url 'forum' %}</a></li>
+<li class="last"></li>
+{% block breadcrumbs %}
+{{ block.super }}
+<a href="{% url 'forum' %}">>Форумы</a>
+<a href="{% url 'forum_id' forum_id %}">>{{forum}}</a>
+<a href="{% url 'topic_id' forum_id topic_id %}">>{{topic}}</a>
+{% endblock %}
+{% block content %}
+<div style="margin:10px">
+    <div style="display:flex">
+        <div style="margin:10px">
+            {% if topic.file %}
+            <a href="{{topic.file.url}}" target="blank">
+                <img class="img-article-left" src="{{topic.file.url}}" width="200" align="left" style="margin:10px">
+            </a>
+            {% endif %}
+            topic:{{topic}} / date:{{topic.date}}
+            <p>body:{{topic.body}}</p>
+        </div>
+        <form action="{%url 'topic_id' forum_id topic_id %}" method="post">
+            <div>
+                {% csrf_token %}
+                {{ form.label }}
+                {{ form.body }}
+                <!--            </div>-->
+                <!--            <div>-->
+                <input type="submit" value="Отправить сообщение" style="background:orange">
+            </div>
+        </form>
+    </div>
+    {% for post in posts %}
+    user:{{post.user}} / date:{{post.date}} <p>body:{{post.body}}</p>
+    {% endfor %}
+</div>
+{% endblock %}
