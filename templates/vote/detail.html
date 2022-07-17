@@ -4,19 +4,19 @@
 {% block title %}{#{% page_attribute "page_title" %}#}{% endblock title %}
 {% block breadcrumbs %}
 {{ block.super }}
-<a href="{% url 'voteuser:votes' %}">>Опрос</a>
+<a href="{% url 'vote:votes' %}">>Опрос</a>
 {% endblock %}
 {% block content %}
 <h1>{{ question.question_text }}</h1>
 
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
 
-<form action="{% url 'voteuser:vote' question.id %}" method="post">
+<form action="{% url 'vote:vote' question.id %}" method="post">
 {% csrf_token %}
 {% for choice in question.choice_set.all %}
     <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
     <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
 {% endfor %}
-<input type="submit" value="Vote" style="background:orange">
+<input type="submit" value="Голос" style="background:orange">
 </form>
 {% endblock content %}

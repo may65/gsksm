@@ -21,7 +21,7 @@ class TopicAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     pass
-    # list_display = ('id','post','date','user')
-    list_display = list_fields(Post)
+    list_display = ('id','post','date','user','forum','topic')
+    # list_display = list_fields(Post)
     # list_display_links = list_display
     # search_fields = list_display

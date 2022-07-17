@@ -26,16 +26,23 @@ def test(request):
 #         td.setdefault(d['pk'], d['fields'])
 #     return render(request,'forum/forums.html',{'test':test,'forum':forum,'table':table,'th': th,'td':td})
 
+def func(arg):
+    arg='123'
+    return "test %s" % arg
+
 def forum(request):
     pass
-    forums = Forum.objects.all().order_by('-date')
-    return render(request, 'forum/forum.html', {'forums':forums})
+    forum = Forum.objects.all().order_by('-date')
+    topic = Topic.objects.all()
+    posts = Post.objects.order_by('-date')[:5]
+    return render(request, 'forum/forum.html', {'forum':forum,'topic':topic,'posts':posts,'func':func(1)})
 
 def forum_id(request,forum_id):
     pass
     forum = Forum.objects.get(id=int(forum_id))
-    topics = Topic.objects.all().filter(forum=forum_id).order_by('-date')
-    return render(request, 'forum/forum_id.html', {'forum_id':forum_id,'forum':forum,'topics':topics})
+    topic = Topic.objects.all().filter(forum_id=int(forum_id))
+    posts = Post.objects.all().filter(forum_id=int(forum_id)).order_by('-date')[:5]
+    return render(request, 'forum/forum_id.html', {'forum_id':forum_id,'forum':forum,'topic':topic,'posts':posts})
 
 def topic_id(request,forum_id,topic_id):
     post = Post()
@@ -44,7 +51,7 @@ def topic_id(request,forum_id,topic_id):
         if form.is_valid():
             pass
             post.body = form.cleaned_data['body']
-            # post.topic = topic_id
+            post.forum = Forum.objects.get(id=int(forum_id))
             post.topic = Topic.objects.get(id=int(topic_id))
             post.user = request.user
             # post.
@@ -55,7 +62,7 @@ def topic_id(request,forum_id,topic_id):
     pass
     forum = Forum.objects.get(id=int(forum_id))
     topic = Topic.objects.get(id=int(topic_id))
-    posts = Post.objects.all().filter(topic=topic_id).order_by('-date')
+    posts = Post.objects.all().filter(topic_id=int(topic_id))
     return render(request, 'forum/topic_id.html',
                   {'forum_id':forum_id,'topic_id':topic_id,
                    'forum': forum, 'topic': topic,

@@ -13,32 +13,21 @@ forum/forum.html<br>
 <div style="margin:10px">
     {#{% include 'forum/submenu.html' %}#}
     <!--<br/><a href="{{ forum.get_absolute_url }}create/">"Add New Topic"</a>-->
-    {% for forum in forums %}
+    Форумов:{{forum.count}}
+    <br>Тем:{{topic.count}}
+<!--    <br>Сообщений:{{posts.count}}-->
+<!--    <br>posts:{{posts}}-->
+    {% for p in posts %}
+    <br>{{p.date}} Форум id:{{p.forum_id}}
+<!--    topic:{{p.topic_id}}-->
+    {% endfor %}
+    {% for f in forum %}
     <h4>
-    <a href="{% url 'forum_id' forum.id %}">{{forum.forum}}</a>
+    <a href="{% url 'forum_id' f.id %}">{{f.forum}}</a>(id:{{f.id}})
     </h4>
     {{forum.date}}
     <p>{{forum.desc}}</p>
     {% endfor %}
 
-    {% comment %}
-    <!--    <table border="1px">-->
-    <!--        <tr>-->
-    <!--            {% for h in th %}-->
-    <!--            <th>{{h}}</th>-->
-    <!--            {% endfor %}-->
-    <!--        </tr>-->
-    <!--        {% for k1,v1 in td.items %}-->
-    <!--        &lt;!&ndash;    <br>k1:{{k1}} / v1{{v1}}&ndash;&gt;-->
-    <!--        <tr>-->
-    <!--            <td><a href="{% url 'forum_id' k1 %}">{{k1}}</a></td>-->
-    <!--            {% for k2,v2 in v1.items %}-->
-    <!--            &lt;!&ndash;            <br>k2:{{k2}} / v2:{{v2}}&ndash;&gt;-->
-    <!--            <td>{{v2}}</td>-->
-    <!--            {% endfor %}-->
-    <!--        </tr>-->
-    <!--        {%endfor%}-->
-    <!--    </table>-->
-    {% endcomment %}
 </div>
 {% endblock %}

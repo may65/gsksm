@@ -53,7 +53,7 @@ class Post(models.Model):
     desc = models.CharField(max_length=255, verbose_name="Описание",blank=True)
     date_create = models.DateTimeField(auto_now_add = True, verbose_name="создан")
     date = models.DateTimeField(auto_now = True, verbose_name='изменен')
-    # forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
+    forum = models.ForeignKey(Forum, on_delete=models.CASCADE)
     topic = models.ForeignKey(Topic, on_delete=models.CASCADE)
     user = models.ForeignKey(User,related_name='forum_post', on_delete=models.CASCADE)
     body = models.TextField(max_length=1024)

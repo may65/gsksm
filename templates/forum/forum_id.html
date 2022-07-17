@@ -10,32 +10,22 @@ forum/forum_id.html<br>
 <a href="{% url 'forum_id' forum_id %}">{{forum}}</a>
 {% endblock %}
 {% block content %}
-<div style="margin:10px">
-    <!--<br>forum_id:{{forum_id}}-->
-    <!--<br>forum:{{forum}}-->
-    <!--<br>topics:{{topics}}-->
-    {% for topic in topics %}
-    <h4>
-        <a href="{% url 'forum' %}{{forum_id}}/{{topic.id}}/">{{topic.topic}}</a>
-    </h4>
-    {{topic.date}}/forum:{{topic.forum}}
-    <p>{{topic.desc}}</p>
+    <br>Тем:{{topic.count}}
+<!--    <br>Сообщений:{{posts.count}}-->
+<!--    <br>posts:{{posts}}-->
+    {% for p in posts %}
+    <br>{{p.date}} Тема id:{{p.topic_id}}
     {% endfor %}
-    <!--<br/><a href="{{ forum.get_absolute_url }}create/">"Add New Topic"</a>-->
-    <!--<table border="1px">-->
-    <!--    <tr>-->
-    <!--        {% for h in th %}-->
-    <!--        <th>{{h}}</th>-->
-    <!--        {% endfor %}-->
-    <!--    </tr>-->
-    <!--    {% for k1,v1 in td.items %}-->
-    <!--&lt;!&ndash;    <br>k1:{{k1}}/v1.forum:{{v1.forum}}}&ndash;&gt;-->
-    <!--    <tr><td><a href="{% url 'forum' %}{{v1.forum}}/{{k1}}/">{{k1}}</a></td>-->
-    <!--        {% for k2,v2 in v1.items %}-->
-    <!--            <td>{{v2}}</td>-->
-    <!--        {% endfor %}-->
-    <!--    </tr>-->
-    <!--    {%endfor%}-->
-    <!--</table>-->
+<div style="margin:10px">
+<!--    forum:{{forum}}={{forum.count}}-->
+
+    {% for t in topic %}
+    <h4>
+        <a href="{% url 'forum' %}{{forum_id}}/{{t.id}}/">{{t.topic}}</a>(id:{{t.id}})
+    </h4>
+    {{t.date}}
+<!--    /forum:{{t.forum}}-->
+    <p>{{t.desc}}</p>
+    {% endfor %}
 </div>
 {% endblock %}

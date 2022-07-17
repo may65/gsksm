@@ -11,6 +11,9 @@ forum/topic_id.html<br>
 <a href="{% url 'topic_id' forum_id topic_id %}">>{{topic}}</a>
 {% endblock %}
 {% block content %}
+<!--    <br>forum:{{forum.forum}}={{forum.count}}-->
+<!--    <br>topic.topic:{{topic.topic}}={{topic.count}}-->
+<br>Сообщений:{{posts.count}}
 <div style="margin:10px">
     <div style="display:flex">
         <div style="margin:10px">
@@ -22,7 +25,7 @@ forum/topic_id.html<br>
             topic:{{topic}} / date:{{topic.date}}
             <p>body:{{topic.body}}</p>
         </div>
-        <form action="{%url 'topic_id' forum_id topic_id %}" method="post">
+        <form action="{% url 'topic_id' forum_id topic_id %}" method="post">
             <div>
                 {% csrf_token %}
                 {{ form.label }}
@@ -34,7 +37,9 @@ forum/topic_id.html<br>
         </form>
     </div>
     {% for post in posts %}
-    user:{{post.user}} / date:{{post.date}} <p>body:{{post.body}}</p>
+    user:{{post.user}} / date:{{post.date}}
+<!--    / topic:{{post.topic}}-->
+    <p>body:{{post.body}}</p>
     {% endfor %}
 </div>
 {% endblock %}
