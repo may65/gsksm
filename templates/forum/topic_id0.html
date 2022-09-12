@@ -1,0 +1,51 @@
+{% extends 'mbr_base.html' %}
+{% block title %}топик{% endblock %}
+{% block breadcrumbs %}
+<span>
+{{ block.super }}
+<a href="{% url 'forum:forum' %}">>Форумы</a>
+<a href="{% url 'forum:forum_id' forum_id %}">>{{forum}}</a>
+<a href="{% url 'forum:topic_id' forum_id topic_id %}">>{{topic}}</a>
+</span>
+{% endblock %}
+{% block content %}
+<div class="mbr-section-head"><br><br><br><br>
+    <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+        <strong>Форум:{{forum.forum}} </strong><br>
+        <strong>Топик:{{ topic.topic }}</strong>
+    </h3>
+</div>
+<p>request.user:{{ request.user }}</p>
+<!--    <br>forum:{{forum.forum}}={{forum.count}}-->
+<!--    <br>topic.topic:{{topic.topic}}={{topic.count}}-->
+<br>Сообщений:{{posts.count}}
+<!--<div style="margin:10px">-->
+<div style="display:flex">
+    <div style="margin:10px">
+        {% if topic.file %}
+        <a href="{{topic.file.url}}" target="blank">
+            <img class="img-article-left" src="{{topic.file.url}}" width="200" align="left" style="margin:10px">
+        </a>
+        {% endif %}
+        topic:{{topic}} / date:{{topic.date}}
+        <p>body:{{topic.body}}</p>
+    </div>
+    <form action="{% url 'forum:topic_id' forum_id topic_id %}" method="post">
+        <div>
+            {% csrf_token %}
+            {{ form.label }}
+            {{ form.body }}
+            <!--            </div>-->
+            <!--            <div>-->
+            <input type="submit" value="Отправить сообщение" style="background:orange">
+        </div>
+    </form>
+    {{ form.body }}
+</div>
+{% for post in posts %}
+user:{{post.user}} / date:{{post.date}}
+<!--    / topic:{{post.topic}}-->
+<p>body:{{post.body}}</p>
+{% endfor %}
+<!--</div>-->
+{% endblock %}

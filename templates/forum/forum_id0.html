@@ -1,0 +1,36 @@
+{% extends 'mbr_base.html' %} <!-- подключаем базовый шаблон -->
+{% block title %}форум{% endblock %}
+
+{% block breadcrumbs %}
+<span>
+{{ block.super }}
+<a href="{% url 'forum' %}">>Форумы></a>
+<a href="{% url 'forum_id' forum_id %}">{{forum}}</a>
+</span>
+{% endblock %}
+{% block content %}
+<div class="mbr-section-head"><br><br><br><br>
+    <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+        <strong>Форум {{forum.forum}}</strong>
+    </h3>
+</div>
+<p>request.user:{{ request.user }}</p>
+<br>Тем:{{topic.count}}
+<!--    <br>Сообщений:{{posts.count}}-->
+<!--    <br>posts:{{posts}}-->
+{% for p in posts %}
+<br>{{p.date}} Тема id:{{p.topic_id}}
+{% endfor %}
+<!--<div style="margin:10px">-->
+<!--    forum:{{forum}}={{forum.count}}-->
+
+{% for t in topic %}
+<h4>
+    <a href="{% url 'forum' %}{{forum_id}}/{{t.id}}/">{{t.topic}}</a>(id:{{t.id}})
+</h4>
+{{t.date}}
+<!--    /forum:{{t.forum}}-->
+<p>{{t.desc}}</p>
+{% endfor %}
+<!--</div>-->
+{% endblock %}

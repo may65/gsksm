@@ -1,0 +1,381 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <!-- Site made with Mobirise Website Builder v5.6.11, https://mobirise.com -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="generator" content="Mobirise v5.6.11, mobirise.com">
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:image:src" content="">
+    <meta property="og:image" content="">
+    <meta name="twitter:title" content="Home">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon-192x192-128x128.png' %}" type="image/x-icon">
+    <meta name="description" content="">
+
+
+    <title>{% block title %}главная{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-grid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/bootstrap/css/bootstrap-reboot.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/dropdown/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/socicon/css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/theme/css/style.css' %}">
+    <link rel="preload"
+          href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,500,600,700,800,900&display=swap"
+          as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet"
+              href="https://fonts.googleapis.com/css?family=Inter:100,200,300,400,500,600,700,800,900&display=swap">
+    </noscript>
+    <!--    <link rel="preload" as="style" href="{% static 'assets/mobirise/css/mbr-additional.css' %}">-->
+    <style>
+    {% include 'assets/mobirise/css/mbr-additional.css' %}
+
+
+
+
+
+
+
+
+    </style>
+
+</head>
+<body>
+
+<section data-bs-version="5.1" class="menu menu2 cid-tfIOptU3pq" once="menu" id="menu2-1t">
+    <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+        <div>
+            <div class="container">
+
+                <!--            logo-->
+                <div class="navbar-brand">
+                <span class="navbar-logo">
+                    <a href="/">
+                        <img src="{% static 'assets/images/favicon-96x96.png' %}" alt="Mobirise Website Builder"
+                             style="height: 3rem;">
+                    </a>
+                </span>
+                    <span class="navbar-caption-wrap"><a class="navbar-caption text-black display-7"
+                                                         href="/">ГСК<br>СТРОЙ-<br>МАТЕРИАЛЫ</a></span>
+
+                </div>
+                <!--            button-->
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse"
+                        data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="hamburger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+                <!--            menu-->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link link text-black dropdown-toggle show display-4"
+                               href="https://mobiri.se" data-toggle="dropdown-submenu"
+                               data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                               aria-expanded="true">gsk</a>
+                            <div class="dropdown-menu show" aria-labelledby="dropdown-976" data-bs-popper="none">
+                                <a class="text-black dropdown-item text-primary display-4" href="/">Main</a>
+                                <!--                            <a class="text-black dropdown-item text-primary display-4" href="/admin/">admin</a>-->
+                                <a class="text-black dropdown-item display-4" href="/news/">новости</a>
+                                <a class="text-black dropdown-item display-4" href="/power/">свет</a>
+                                <a class="text-black dropdown-item display-4" href="/vote/">опрос</a>
+                                <a class="text-black dropdown-item display-4" href="/forum/">форум</a>
+                                <a class="text-black dropdown-item display-4" href="/contact/">контакты</a>
+
+                                <!--                            <a class="text-black dropdown-item text-primary display-4" href="/admin/"-->
+                                <!--                               data-toggle="modal">admin</a>-->
+                                <!--                            <a href="/admin/" class="text-black dropdown-item text-primary display-4">admin2</a>-->
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link link text-black dropdown-toggle display-4"
+                               href="https://mobiri.se" data-toggle="dropdown-submenu"
+                               data-bs-toggle="dropdown" data-bs-auto-close="outside"
+                               aria-expanded="false">admin</a>
+                            <div class="dropdown-menu" aria-labelledby="dropdown-497">
+                                <a class="text-black dropdown-item text-primary display-4" href="/admin/">admin</a>
+                                <a class="text-black dropdown-item text-primary display-4" href="#modal1"
+                                   data-toggle="modal">войти</a>
+                                <a class="text-black dropdown-item text-primary display-4" href="{% url 'logout' %}">
+                                    выйти</a>
+                            </div>
+                        </li>
+                    </ul>
+
+                    {% if user.is_authenticated %}
+                    <div class="navbar-buttons mbr-section-btn">
+                        <a class="btn btn-success display-4" href="{% url 'logout' %}">
+                            {{ user.username }} {{ count }}
+                        </a>
+                    </div>
+                    {% else %}
+                    <div class="navbar-buttons mbr-section-btn">
+                        <!--                    href="accounts/login/#modal1"-->
+                        <a class="btn btn-warning display-4" href="#modal1" data-toggle="modal">
+                            No Auth {{ count }}
+                        </a>
+                    </div>
+                    {% endif %}
+
+                </div>
+
+            </div>
+                {% block breadcrumbs %}
+                <a href="/">Главная</a>
+                {% endblock %}
+        </div>
+
+</section>
+
+<!--<section data-bs-version="5.1" class="timeline3 cid-tfOsqvKeh2" id="timeline3-22" mbr-class="{'mbr-parallax-background': bg.parallax}">-->
+<section data-bs-version="5.1">
+    {% block content %}
+    <div class="mbr-overlay" style="opacity: 0.7; background-color: rgb(255, 255, 255);">
+    </div>
+    <div class="container">
+        <!--        style="background-image: url({% static 'background3.jpg' %});">-->
+        <div class="mbr-section-head">
+            <br><br><br><br>
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Главная</strong></h3>
+
+        </div>
+        <div class="timelines-container mt-4">
+            <div class="row timeline-element first-separline mb-5">
+                <div class="timeline-date col-12">
+                    <div class="timeline-date-wrapper">
+                        <p class="mbr-timeline-date display-7">25.03.1999</p>
+                    </div>
+                </div>
+                <span class="iconBackground"></span>
+                <div class="col-12 col-md-6">
+                    <div class="image-wrapper">
+                        <img src="{% static 'assets/images/img-948x545.jpg' %}" alt="Mobirise Website Builder" title="">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="timeline-text-wrapper">
+                        <h4 class="mbr-timeline-title mbr-fonts-style mb-0 display-5"><strong>Гаражно-строительный
+                            кооператив «СТРОЙМАТЕРИАЛЫ»</strong></h4>
+                        <p class="mbr-text mbr-fonts-style mt-3 mb-0 display-7">Гаражно-строительный кооператив
+                            «Стройматериалы» зарегистрирован 25.03.1999
+                            <br>
+                            <br>Гаражно-строительный кооператив «Стройматериалы» (далее ГСК «Стройматериалы») —
+                            организация, созданная гражданами на добровольных началах с целью обеспечения необходимых
+                            условий для хранения автомобилей, а также для эксплуатации и управления гаражами.
+                            <br>
+                            <!--                            <br>Деятельность ГСК «Стройматериалы» регулируется действующим Законодательством и Уставом-->
+                            <!--                            кооператива. Кооператив считается созданным с момента регистрации его устава. Последний-->
+                            <!--                            принимается общим собранием граждан — учредителей ГСК «Стройматериалы». Гаражи, построенные-->
+                            <!--                            гаражно-строительным кооперативом, принадлежат кооперативу на праве коллективной-->
+                            <!--                            собственности. Член ГСК «Стройматериалы», который полностью внес свой пай, приобретает право-->
+                            <!--                            собственности на гараж и может распоряжаться им по своему усмотрению — продавать, завещать,-->
+                            <!--                            сдавать в аренду, обменивать, совершать в отношении него сделки, не запрещенные законом.-->
+                            <!--                            Оформление права собственности на гараж и земельный участок проводится с выдачей-->
+                            <!--                            соответствующего свидетельства местными органами исполнительной власти или органами местного-->
+                            <!--                            самоуправления. Деятельность ГСК «Стройматериалы» контролируется местными органами-->
+                            <!--                            исполнительной власти и органами местного самоуправления.</p>-->
+                    </div>
+                </div>
+            </div>
+            <div class="row timeline-element first-separline mb-5">
+                <div class="timeline-date col-12">
+                    <div class="timeline-date-wrapper">
+                        <p class="mbr-timeline-date display-7">
+                            1 августа 2022</p>
+                    </div>
+                </div>
+                <span class="iconBackground"></span>
+                <div class="col-12 col-md-6">
+                    <div class="image-wrapper">
+                        <img src="{% static 'assets/images/favicon-192x192.png' %}" alt="Mobirise Website Builder"
+                             title="">
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="timeline-text-wrapper">
+                        <h4 class="mbr-timeline-title mbr-fonts-style mb-0 display-5"><strong>Органами управления ГСК
+                            являются:</strong></h4>
+                        <p class="mbr-text mbr-fonts-style mt-3 mb-0 display-7">— Общее собрание членов
+                            <br>— Правление ГСК
+                            <br>— председатель Правления
+                            <br>Контроль за финансово-хозяйственной деятельностью ГСК, в том числе и за деятельностью
+                            председателя и
+                            членов Правления, осуществляет ревизионная комиссия, избранная из членов ГСК и Общим
+                            собранием.</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <!--</section>-->
+    {% endblock %}
+</section>
+<section data-bs-version="5.1" class="footer7 cid-teXekBXJ9d" once="footers" id="footer7-1l">
+
+
+    <div class="container">
+        <div class="media-container-row align-center mbr-white">
+            <div class="col-12">
+                <p class="mbr-text mb-0 mbr-fonts-style display-7">
+                    © Copyright 2022</p>
+            </div>
+        </div>
+    </div>
+    <!--modal(href='#modal1' data-toggle='modal')-->
+    <style>
+	/* Let's not animate the contents of modal windows */
+	.no-anim {
+		-webkit-animation: none !important;
+		-moz-animation: none !important;
+		-o-animation: none !important;
+		-ms-animation: none !important;
+		animation: none !important;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </style>
+
+    <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1Label" aria-hidden="true">
+        <div class="modal-dialog  " style="height:auto" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="no-anim modal-title display-7">
+                        Авторизация
+                    </h5>
+                    <a href="#" class="no-anim close" data-bs-dismiss="modal" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </a>
+                </div>
+                <div class="modal-body display-7" id="modal1_body">
+                    <form method="post" action="/login/">
+                        {% csrf_token %}
+                        <!--                                            <input type="hidden" name="csrfmiddlewaretoken"-->
+                        <!--                                                   value="vFINXCPTTc54ymvUJQ7w5HjIGuqqZv1XchRY1BeAlirEAKInCgm5gYsDoPfaaTPG">-->
+                        <table>
+                            <tbody>
+                            <tr>
+                                <td><label for="id_username">User:</label></td>
+                                <td><input type="text" name="username" required="" id="id_username"></td>
+                            </tr>
+                            <tr>
+                                <td><label for="id_password">Pass:</label></td>
+                                <td><input type="password" name="password" required="" id="id_password"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <!--<a class="btn btn-warning display-4" href="#modal1" data-toggle="modal">-->
+                        <input type="submit" value="Войти" class="btn btn-info display-4">
+                        <input type="hidden" name="next" value="">
+                        <!--                            <a href="/account/register/">Регистрация нового пользователя</a>-->
+                    </form>
+                    <!--                    <form method="post" action="{% url 'login' %}">-->
+                    <!--                        {% csrf_token %}-->
+                    <!--                        <table>-->
+                    <!--                            <tr>-->
+                    <!--                                <td>{{ form.username.label_tag }}</td>-->
+                    <!--                                <td>{{ form.username }}</td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr>-->
+                    <!--                                <td>{{ form.password.label_tag }}</td>-->
+                    <!--                                <td>{{ form.password }}</td>-->
+                    <!--                            </tr>-->
+                    <!--                        </table>-->
+
+                    <!--                        <input type="submit" value="Войти" style="background:green"/>-->
+                    <!--                        <input type="hidden" name="next" value="{{ next }}"/>-->
+                    <!--                        &lt;!&ndash;                            <a href="/account/register/">Регистрация нового пользователя</a>&ndash;&gt;-->
+                    <!--                    </form>-->
+                    <!--                    <form method="post" action="/login/">-->
+                    <!--&lt;!&ndash;                        <input type="hidden" name="csrfmiddlewaretoken" value="pOxTQkU6jqOn05ukx8dS6U3EFo5k3qkfxUG2VHGk19NyrRmd4GLtGlTYKcQ4fSVP">&ndash;&gt;-->
+                    <!--                        {% csrf_token %}-->
+                    <!--                        <table>-->
+                    <!--                            <tbody><tr>-->
+                    <!--                                <td><label for="id_username">Username:</label></td>-->
+                    <!--                                <td><input type="text" name="username" required="" id="id_username"></td>-->
+                    <!--                            </tr>-->
+                    <!--                            <tr>-->
+                    <!--                                <td><label for="id_password">Password:</label></td>-->
+                    <!--                                <td><input type="password" name="password" required="" id="id_password"></td>-->
+                    <!--                            </tr>-->
+                    <!--                        </tbody></table>-->
+
+                    <!--                        <input type="submit" value="Войти" style="background:green">-->
+                    <!--                        <input type="hidden" name="next" value="">-->
+                    <!--                        &lt;!&ndash;                            <a href="/account/register/">Регистрация нового пользователя</a>&ndash;&gt;-->
+                    <!--                    </form>-->
+                </div>
+                <div class="modal-footer">
+                    <!--                    <div class="mbr-section-btn">-->
+                    <!--                        <a href="#" class="no-anim btn btn-secondary display-4" data-bs-dismiss="modal"-->
+                    <!--                           data-dismiss="modal">-->
+                    <!--                            Close-->
+                    <!--                        </a>-->
+                    <!--                    </div>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--endmodal-->
+</section>
+
+<script src="{% static 'assets/witsec-jquery-3.6.0/jquery-3.6.0.min.js' %}"></script>
+<script src="{% static 'assets/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/smoothscroll/smooth-scroll.js' %}"></script>
+<script src="{% static 'assets/ytplayer/index.js' %}"></script>
+<script src="{% static 'assets/dropdown/js/navbar-dropdown.js' %}"></script>
+<script src="{% static 'assets/theme/js/script.js' %}"></script>
+<script src='{% static "assets/countdown/countdown.js" %}'></script>
+<script src='{% static "assets/formoid/formoid.min.js" %}'></script>
+
+
+<div id="scrollToTop" class="scrollToTop mbr-arrow-up">
+    <a style="text-align: center;">
+        <i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i>
+    </a>
+</div>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+</html>

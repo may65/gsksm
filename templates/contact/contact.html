@@ -1,0 +1,174 @@
+{# djcode/pySite/templates/news/news.html #}
+
+{% extends 'mbr_base.html' %} <!-- подключаем базовый шаблон -->
+{% load static %}
+{% block title %}контакты{% endblock %}
+{% block breadcrumbs %}
+<span>
+    {{ block.super }}
+    <!--<a href="{% url 'news' %}">>Новости</a>-->
+    <a href="{% url 'contact' %}">>Контакты</a>
+</span>
+{% endblock %}
+{% block content %}
+<div class="mbr-section-head">
+    <br><br><br><br>
+    <h4 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-5">
+        <strong style="color:blue">страница доступна только для авторизованных пользователей</strong>
+    </h4>
+</div>
+{% if user.is_authenticated %}
+<section data-bs-version="5.1" class="contacts3 map1 cid-tgF3cDI8Wa" id="contacts3-m">
+
+    <div class="container">
+        <!--        Председатель-->
+        <div class="mbr-section-head">
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Контакты</strong>
+            </h3>
+            <h4 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-5">
+                Председатель
+            </h4>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="card col-12 col-md-6">
+                <div class="card-wrapper">
+                    <!--                    Юркин Сергей Николаевич-->
+                    <div class="image-wrapper">
+                        <h6 class="card-title mbr-fonts-style mb-1 display-5">
+                            <span class="mbr-iconfont mobi-mbri-globe mobi-mbri">{{contact.top}}</span>
+                        </h6>
+                    </div>
+                    <br><br>
+                    <!--                    Телефон-->
+                    <div class="text-wrapper">
+                        <h6 class="card-title mbr-fonts-style mb-1 display-5"><strong>Телефон</strong></h6>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            <a href="tel:{{contact.top}}" class="text-primary">{{contact.phone}}</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="card-wrapper">
+                    <!--                    <div class="image-wrapper">-->
+                    <!--                        <span class="mbr-iconfont mobi-mbri-globe mobi-mbri"></span>-->
+                    <!--                    </div>-->
+                    <!--                    Email-->
+                    <div class="text-wrapper">
+                        <h6 class="card-title mbr-fonts-style mb-1 display-5"><strong>Email</strong></h6>
+                        <p class="mbr-text mbr-fonts-style display-7">
+                            <a href="mailto:{{contact.email}}" class="text-primary">{{contact.email}}</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- map-->
+            <div class="map-wrapper col-12 col-md-6">
+                <div class="google-map">
+                    <!--                    <iframe frameborder="0" style="border:0"-->
+                    <!--                            src="https://www.google.com/maps/embed/v1/place?key=AIzaSyDk89J4FSunMF33ruMVWJaJht_Ro0kvoXs&amp;q=красково"-->
+                    <!--                            allowfullscreen="">-->
+                    <!--                    </iframe>-->
+<!--                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A2c70c0fe8427d658127d47275e57bf3edbf531ea957d89bbc1f974069b47586c&amp;source=constructor"-->
+<!--                            width="512" height="407" frameborder="0"></iframe>-->
+                    <iframe src="{{ contact.map1 }}" width="512" height="407" frameborder="0"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section data-bs-version="5.1" class="contacts3 map1 cid-tgF3cDI8Wa" id="contacts3-m">
+
+    <div class="container">
+        <div class="mbr-section-head">
+            <h4 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-5">Дополнительно</h4>
+        </div>
+        <div class="row justify-content-center mt-4">
+            <div class="card col-12 col-md-6">
+                <div id="bootstrap-accordion_2" class="panel-group accordionStyles accordion" role="tablist"
+                     aria-multiselectable="true">
+                    <!--                    Правление-->
+                    <div class="card mb-3">
+                        <div class="card-header" role="tab" id="headingOne">
+                            <a role="button" class="panel-title collapsed" data-toggle="collapse"
+                               data-bs-toggle="collapse" data-core="" href="#collapse1_2" aria-expanded="false"
+                               aria-controls="collapse1">
+                                <h6 class="panel-title-edit mbr-fonts-style mb-0 display-7"><strong>Правление</strong>
+                                </h6>
+                                <span class="sign mbr-iconfont mbri-arrow-down"></span>
+                            </a>
+                        </div>
+                        <div id="collapse1_2" class="panel-collapse noScroll collapse" role="tabpanel"
+                             aria-labelledby="headingOne" data-parent="#accordion"
+                             data-bs-parent="#bootstrap-accordion_2">
+                            <div class="panel-body">
+                                <p class="mbr-fonts-style panel-text display-4">{{contact.gover}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    Ревизионная Комиссия-->
+                    <div class="card mb-3">
+                        <div class="card-header" role="tab" id="headingOne">
+                            <a role="button" class="panel-title collapsed" data-toggle="collapse"
+                               data-bs-toggle="collapse" data-core="" href="#collapse2_2" aria-expanded="false"
+                               aria-controls="collapse2">
+                                <h6 class="panel-title-edit mbr-fonts-style mb-0 display-7"><strong>Ревизионная
+                                    Комиссия</strong></h6>
+                                <span class="sign mbr-iconfont mbri-arrow-down"></span>
+                            </a>
+                        </div>
+                        <div id="collapse2_2" class="panel-collapse noScroll collapse" role="tabpanel"
+                             aria-labelledby="headingOne" data-parent="#accordion"
+                             data-bs-parent="#bootstrap-accordion_2">
+                            <div class="panel-body">
+                                <p class="mbr-fonts-style panel-text display-4">{{contact.audit}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    Свет-->
+                    <div class="card mb-3">
+                        <div class="card-header" role="tab" id="headingOne">
+                            <a role="button" class="panel-title collapsed" data-toggle="collapse"
+                               data-bs-toggle="collapse" data-core="" href="#collapse3_2" aria-expanded="false"
+                               aria-controls="collapse2">
+                                <h6 class="panel-title-edit mbr-fonts-style mb-0 display-7"><strong>Свет</strong></h6>
+                                <span class="sign mbr-iconfont mbri-arrow-down"></span>
+                            </a>
+                        </div>
+                        <div id="collapse3_2" class="panel-collapse noScroll collapse" role="tabpanel"
+                             aria-labelledby="headingOne" data-parent="#accordion"
+                             data-bs-parent="#bootstrap-accordion_2">
+                            <div class="panel-body">
+                                <p class="mbr-fonts-style panel-text display-4">{{contact.power}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="map-wrapper col-12 col-md-6">
+                <!--                <div class="google-map">-->
+                <!--                    <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A2c70c0fe8427d658127d47275e57bf3edbf531ea957d89bbc1f974069b47586c&amp;source=constructor"-->
+                <!--                            width="512" height="407" frameborder="0"></iframe>-->
+                <!--                </div>-->
+                <!--                <a href="https://mobiri.se">-->
+                <img src="{{contact.photo.url}}" alt="map">
+                <!--                {#{% static 'assets/images/favicon-96x96.png' %}#}-->
+
+                <!--                         style="height: 3rem;">-->
+                <!--                </a>-->
+                <!--                <a href="{{post.file.url}}" target="_blank">-->
+                <!--                    <img class="img-article-left thumb" src="{{post.photo.url}}" width="100" align="left"-->
+                <!--                         style="margin:10px">-->
+                <!--                </a>-->
+            </div>
+        </div>
+    </div>
+    <br><br>
+</section>
+<script src="assets/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/smoothscroll/smooth-scroll.js"></script>
+<script src="assets/ytplayer/index.js"></script>
+<script src="assets/mbr-switch-arrow/mbr-switch-arrow.js"></script>
+<script src="assets/theme/js/script.js"></script>
+
+{% endif  %}
+{% endblock %}
