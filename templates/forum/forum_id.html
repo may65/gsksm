@@ -20,7 +20,7 @@
         <br>
 
         {% for topic in topics %}
-        topic.id:{{ topic.id }}
+<!--        topic.id:{{ topic.id }}-->
 
         <div class="card-wrapper">
 
@@ -42,15 +42,15 @@
                             <!-- Что такое Lorem Ipsum? -->
                             <div class="col-md">
                                 <h6 class="card-title mbr-fonts-style display-5">
-                                    <strong>topic:{{ topic }}</strong>
+                                    <strong>{{ topic }}</strong>
                                 </h6>
-                                <p class="mbr-text mbr-fonts-style display-7">date:{{ forum.date }} author:{{ forum.author }}</p>
-                                <p class="mbr-text mbr-fonts-style display-7">desc:{{ forum.desc }}</p>
+                                <p class="mbr-text mbr-fonts-style display-7">Дата:{{ forum.date|date:'Y/m/d' }} Автор:{{ forum.author }}</p>
+                                <p class="mbr-text mbr-fonts-style display-7">{{ forum.desc }}</p>
                             </div>
                         </div>
                         <!-- Зайти -->
                         <div class="col-md-auto">
-                            <p class="price mbr-fonts-style display-4 btn-primary">Тем: 3 Сообщений: 15</p>
+<!--                            <p class="price mbr-fonts-style display-4 btn-primary">Тем: 3 Сообщений: 15</p>-->
                             <div class="mbr-section-btn">
 <!--                                <a href="{#{% url 'forum:topic_id0' forum.id topic.id %}#}" class="btn btn-success display-4">Зайти0</a>-->
                                 <a href="{% url 'forum:topic_id' forum.id topic.id %}" class="btn btn-success display-4">Зайти</a>

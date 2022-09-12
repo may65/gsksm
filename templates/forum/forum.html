@@ -18,7 +18,7 @@
         </div>
         <br>
         {% comment %}
-        <p>request.user:{{ request.user }}</p>
+<!--        <p>request.user:{{ request.user }}</p>-->
         <!--<br></br>https://python-scripts.com/category/django-beginners-->
         <!--<div style="display:flex;margin:10px">-->
         <!--<div style="margin:10px">-->
@@ -35,8 +35,8 @@
         <!--{% endfor %}-->
         {% endcomment %}
         {% for forum in forums %}
-        forum:{{ forum }}<br>
-         <a href="{% url 'forum:forum_id' forum.id %}">{{forum.forum}}</a>(id:{{forum.id}})
+<!--        forum:{{ forum }}<br>-->
+<!--         <a href="{% url 'forum:forum_id' forum.id %}">{{forum.forum}}</a>(id:{{forum.id}})-->
 
         <!--<h4>-->
         <!--    <a href="{#{% url 'forum_id' f.id %}">{{f.forum}}</a>(id:{{f.id}})#}-->
@@ -63,15 +63,15 @@
                             <!-- Что такое Lorem Ipsum? -->
                             <div class="col-md">
                                 <h6 class="card-title mbr-fonts-style display-5">
-                                    <strong>forum:{{ forum }}</strong>
+                                    <strong>{{ forum }}</strong>
                                 </h6>
-                                <p class="mbr-text mbr-fonts-style display-7">date:{{ forum.date }} author:{{ forum.author }}</p>
-                                <p class="mbr-text mbr-fonts-style display-7">desc:{{ forum.desc }}</p>
+                                <p class="mbr-text mbr-fonts-style display-7">Дата:{{ forum.date|date:"Y/m/d" }} Автор:{{ forum.author }}</p>
+                                <p class="mbr-text mbr-fonts-style display-7">{{ forum.desc }}</p>
                             </div>
                         </div>
                         <!-- Зайти -->
                         <div class="col-md-auto">
-                            <p class="price mbr-fonts-style display-4 btn-primary">Тем: 3 Сообщений: 15</p>
+<!--                            <p class="price mbr-fonts-style display-4 btn-primary">Тем: 3 Сообщений: 15</p>-->
                             <div class="mbr-section-btn">
                                 <a href="{% url 'forum:forum_id' forum.id %}" class="btn btn-success display-4">Зайти</a>
                             </div>

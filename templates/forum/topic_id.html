@@ -21,7 +21,9 @@
     <div class="container">
         <div class="mbr-section-head"><br><br><br><br>
             <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
-                <strong>Форум:{{forum.forum}} Тема:{{ topic }} Сообщения</strong>
+                <strong>Форум:{{forum.forum}}</strong><br>
+                <strong>Тема:{{ topic }}</strong><br>
+                <strong>Сообщения</strong>
             </h3>
         </div>
         <div class="card-wrapper">
@@ -43,12 +45,12 @@
                             <!-- Что такое Lorem Ipsum? -->
                             <div class="col-md">
                                 <h6 class="card-title mbr-fonts-style display-5">
-                                    <strong>topic:{{ topic }}</strong>
+                                    <strong>{{ topic }}</strong>
                                 </h6>
                                 <p class="mbr-text mbr-fonts-style display-7">
-                                    date:{{ topic.date }} author:{{ topic.author }}
+                                    Дата:{{ topic.date|date:'Y/m/d' }} Автор:{{ topic.author }}
                                 </p>
-                                <p class="mbr-text mbr-fonts-style display-7">desc:{{ topic.desc }}</p>
+                                <p class="mbr-text mbr-fonts-style display-7">{{ topic.desc }}</p>
                             </div>
                         </div>
                     </div>
@@ -87,8 +89,8 @@
             <div class="row align-items-center">
                 <!--img-->
                 <div class="col-12 col-md-2">
-                    <b>Автор:{{request.user}}<br>
-                    Дата:{% now 'y/m/d' %}</b>
+                    <b>Автор:{{post.author}}<br>
+                    Дата:{{ post.date|date:'y/m/d' }}</b>
                 </div>
                 <!-- Что такое Lorem Ipsum? -->
                 <div class="col-12 col-md">
