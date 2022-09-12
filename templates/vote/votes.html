@@ -1,60 +1,84 @@
-{% extends "base.html" %}
-{#{% load cms_tags %}#}
-{% block title %}{#{% page_attribute "page_title" %}#}{% endblock title %}
+{# djcode/pySite/templates/news/news.html #}
+
+{% extends 'mbr_base.html' %} <!-- подключаем базовый шаблон -->
+{% load static %}
+{% block title %}опрос{% endblock %}
 {% block breadcrumbs %}
+<span>
 {{ block.super }}
 <a href="{% url 'vote:votes' %}">>Опрос</a>
 <a href="{% url 'vote:log' %}">>(log)</a>
+</span>
 {% endblock %}
 {% block content %}
-<!--<br></br>votesAllView<br>-->
-<div style="display:flex">
-    <div>
-        {#{% include 'submenu.html' %}#}
-    </div>
-    <!--<h1>question.question_text</h1>-->
-    <!--<br>question_id=-->
-    <!--<ul>-->
-    <div style="margin:10px">
-        {% for question in latest_question_list %}
-<!--        <br>question_id={{ question.id }}-->
-        <!--<br>url 'voteuser:detail' question.id=-->
-<!--        <br>{#{% url 'voteuser:detail' question.id %}#}-->
-        <!--    <li>-->
-<!--        <br>question.question_text= -->
-        <hr>
-        {{ question.question_text }}
-        <!--<br><a href="{#{% url 'voteuser:detail' question.id %}#}">question.question_text={#{{ question.question_text }}#}</a></li>-->
-        <!--    <ul>-->
-        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<!--        <hr>-->
-<!--        question.id=={{question.id}}-->
-        <form action="{% url 'vote:vote' question.id %}" method="post">
-            {% csrf_token %}
-            {% for choice in question.choice_set.all %}
-            <br>
-<!--            {{choice}}-->
-            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
-            {#{{ choice.choice_text }}#}
-            = {{ choice.votes }} голосов
-<!--            {#{{ choice.votes|pluralize }}#}-->
-<!--            user={{ choice.author }}-->
-            {% endfor %}
-            <br>
-            <input type="submit" value="Голос" style="background:orange">
-        </form>
-        <!--    </ul>-->
-        {% endfor %}
-        <!--</ul>-->
-        <br>
-<!--        for choice in question.choice_set.all-->
-<!--        <ul>-->
-<!--            {% for choice in question.choice_set.all %}-->
-<!--            choice_{{ choice }}-->
-<!--            <li>{{ choice.choice_text }} &#45;&#45; {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>-->
-<!--            {% endfor %}-->
-<!--        </ul>-->
-    </div>
+<div class="mbr-section-head">
+    <br><br><br><br>
+    <h4 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-5">
+        <strong style="color:blue">страница доступна только для авторизованных пользователей</strong>
+    </h4>
 </div>
+{% if user.is_authenticated %}
+<div class="mbr-section-head"><br><br><br><br>
+    <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+        <strong>Опрос</strong>
+    </h3>
+</div>
+<!--<p>request.user:{{ request.user }}</p>-->
+<!--<br></br>votesAllView<br>-->
+<!--<div style="display:flex">-->
+<!--    <div>-->
+<!--        {#{% include 'submenu.html' %}#}-->
+<!--    </div>-->
+<!--<h1>question.question_text</h1>-->
+<!--<br>question_id=-->
+<!--<ul>-->
+<div style="margin:10px">
+    {% for question in latest_question_list %}
+
+    <hr>
+    <div class="card-wrapper">
+        <div class="row align-items-center">
+            <!--img-->
+            <div class="col-12 col-md-6">
+                <!--                <b>Автор:Автор<br>-->
+                <!--                    Дата:{% now 'y/m/d' %}</b>-->
+                {{ question.question_text }}
+            </div>
+            <!-- Что такое Lorem Ipsum? -->
+            <div class="col-12 col-md">
+                <div class="card-box">
+                    <div class="row">
+<!--                        <i>post{{post.body}}</i>-->
+                        <!--                        {{ question.question_text }}-->
+                        {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                        <form action="{% url 'vote:vote' question.id %}" method="post">
+                            {% csrf_token %}
+                            {% for choice in question.choice_set.all %}
+
+                            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+                            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+                            = {{ choice.votes }} голосов
+                            <br>
+                            {% endfor %}
+                            <input type="submit" value="Голос" style="background:orange">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!--    </ul>-->
+        </div>
+    </div>
+    {% endfor %}
+    <!--</ul>-->
+    <br>
+    <!--        for choice in question.choice_set.all-->
+    <!--        <ul>-->
+    <!--            {% for choice in question.choice_set.all %}-->
+    <!--            choice_{{ choice }}-->
+    <!--            <li>{{ choice.choice_text }} &#45;&#45; {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>-->
+    <!--            {% endfor %}-->
+    <!--        </ul>-->
+</div>
+<!--</div>-->
+{% endif %}
 {% endblock content %}

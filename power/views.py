@@ -5,12 +5,19 @@ from django.views.generic import TemplateView
 # Create your views here.
 from django.views import generic
 
+from news.models import Post
 from power.models import *
 
 def power(request):
     # line = Line.objects.all()
     # objects_list = line
-    return render(request,'power/power.html')#,{'objects_list':line})
+    # return render(request,'power/power.html')#,{'objects_list':line})
+    powers = Power.objects.all().order_by('-time_update')
+    # fields = list_fields(Post)
+    # field = dir(Post())
+    # t = type(field)
+    return render(request, 'power/power.html', {'powers':powers,})
+
 
 def line_list(request):
     td = serializers.serialize( "python", Line.objects.all() )

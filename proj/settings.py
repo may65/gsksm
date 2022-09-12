@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'forum',
     'vote',
     'power',
+    'contact',
 ]
 
 MIDDLEWARE = [

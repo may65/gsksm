@@ -1,33 +1,88 @@
-{% extends 'base.html' %} <!-- подключаем базовый шаблон -->
-forum/forum.html<br>
-{% block title %}Forum{% endblock %}
-<li><a href="/forum/">{% url 'forum' %}</a></li>
-<li class="last"></li>
+{% extends 'mbr_base.html' %} <!-- подключаем базовый шаблон -->
+{% load static %}
+<!--forum/forum.html<br>-->
+{% block title %}форумы{% endblock %}
 {% block breadcrumbs %}
+<span>
 {{ block.super }}
-<a href="{% url 'forum' %}">>Форумы</a>
+<a href="{% url 'forum:forum' %}">>Форумы({{forums.count}})</a>
+</span>
 {% endblock %}
 {% block content %}
-<!--<br></br>https://python-scripts.com/category/django-beginners-->
-<!--<div style="display:flex;margin:10px">-->
-<div style="margin:10px">
-    {#{% include 'forum/submenu.html' %}#}
-    <!--<br/><a href="{{ forum.get_absolute_url }}create/">"Add New Topic"</a>-->
-    Форумов:{{forum.count}}
-    <br>Тем:{{topic.count}}
-<!--    <br>Сообщений:{{posts.count}}-->
-<!--    <br>posts:{{posts}}-->
-    {% for p in posts %}
-    <br>{{p.date}} Форум id:{{p.forum_id}}
-<!--    topic:{{p.topic_id}}-->
-    {% endfor %}
-    {% for f in forum %}
-    <h4>
-    <a href="{% url 'forum_id' f.id %}">{{f.forum}}</a>(id:{{f.id}})
-    </h4>
-    {{forum.date}}
-    <p>{{forum.desc}}</p>
-    {% endfor %}
+<section data-bs-version="5.1" class="features8 cid-tgLL14c3bs" xmlns="http://www.w3.org/1999/html" id="features9-w">
+    <div class="container">
+        <div class="mbr-section-head"><br><br><br><br>
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Форумы</strong>
+            </h3>
+        </div>
+        <br>
+        {% comment %}
+        <p>request.user:{{ request.user }}</p>
+        <!--<br></br>https://python-scripts.com/category/django-beginners-->
+        <!--<div style="display:flex;margin:10px">-->
+        <!--<div style="margin:10px">-->
+        {#{% include 'forum/submenu.html' %}#}
+        <!--<br/><a href="{{ forum.get_absolute_url }}create/">"Add New Topic"</a>-->
+        Форумов:{{forum.count}}
+        <br>Тем:{{topic.count}}
+        <!--    <br>Сообщений:{{posts.count}}-->
+        <!--    <br>posts:{{posts}}-->
 
-</div>
+        <!--{% for p in posts %}-->
+        <!--<br>{{p.date}} Форум id:{{p.forum_id}}-->
+        <!--&lt;!&ndash;    topic:{{p.topic_id}}&ndash;&gt;-->
+        <!--{% endfor %}-->
+        {% endcomment %}
+        {% for forum in forums %}
+        forum:{{ forum }}<br>
+         <a href="{% url 'forum:forum_id' forum.id %}">{{forum.forum}}</a>(id:{{forum.id}})
+
+        <!--<h4>-->
+        <!--    <a href="{#{% url 'forum_id' f.id %}">{{f.forum}}</a>(id:{{f.id}})#}-->
+        <!--</h4>-->
+        <!--{#{{forum.date}}#}-->
+
+        <!--<p>{#{{forum.desc}}#}</p>-->
+        <!--forum_id-->
+        <div class="card-wrapper">
+
+            <div class="row align-items-center">
+                <!--img-->
+
+                <div class="col-12 col-md-3">
+                    <div class="image-wrapper">
+                        <!--                        <img src='{% static "assets/images/product1.jpg" alt="Mobirise Website Builder"%}'/>-->
+                        <img src='{{ forum.img.url }}' alt="Mobirise Website Builder"/>
+                    </div>
+                </div>
+                <!-- Что такое Lorem Ipsum? -->
+                <div class="col-12 col-md">
+                    <div class="card-box">
+                        <div class="row">
+                            <!-- Что такое Lorem Ipsum? -->
+                            <div class="col-md">
+                                <h6 class="card-title mbr-fonts-style display-5">
+                                    <strong>forum:{{ forum }}</strong>
+                                </h6>
+                                <p class="mbr-text mbr-fonts-style display-7">date:{{ forum.date }} author:{{ forum.author }}</p>
+                                <p class="mbr-text mbr-fonts-style display-7">desc:{{ forum.desc }}</p>
+                            </div>
+                        </div>
+                        <!-- Зайти -->
+                        <div class="col-md-auto">
+                            <p class="price mbr-fonts-style display-4 btn-primary">Тем: 3 Сообщений: 15</p>
+                            <div class="mbr-section-btn">
+                                <a href="{% url 'forum:forum_id' forum.id %}" class="btn btn-success display-4">Зайти</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br/>
+        {% endfor %}
+
+    </div>
+</section>
 {% endblock %}

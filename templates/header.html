@@ -37,6 +37,7 @@
                                 <a href="{% url 'login' %}" style="color:orange;text-decoration:underline;">Авторизоваться</a>
                             </p>
                             {% endif %}
+                            user
                         </div>
                     </div>
                 </div>
@@ -55,6 +56,15 @@
                                         <ul id="menu-glavnoe-menyu" class="clearfix mobile_nav sf-js-enabled sf-arrows"
                                             style="touch-action: pan-y;">
                                             <!--                                            {#{% for k,v in menu.items %}#}-->
+                                            <li id="menu-item-28"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-38">
+                                                <a class="text-black dropdown-item text-primary display-4"
+                                                   href="javascript:OpenModal('modal1')">
+                                                    войти
+                                                </a></li>
+                                            <li id="menu-item-29"
+                                                class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-38">
+                                                <a href="/mbr/mbr/" target="blank">mbr</a></li>
                                             <li id="menu-item-30"
                                                 class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-38">
                                                 <a href="/admin/" target="blank">Admin</a></li>
@@ -113,4 +123,5 @@
             <img src="{% static 'dots.gif' %}" alt="" role="img">
         </div>
     </div>
+    {% include 'modal1.html' %}
 </header>

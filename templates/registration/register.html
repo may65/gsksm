@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Создать пользователя{% endblock %}
+
+{% block content %}
+<div style="display:flex;margin:10px">
+    <h1>Создать пользователя</h1>
+    <p>Пожалуйста, зарегистрируйтесь, используя следующую форму:</p>
+    <form action="." method="post">
+        {{ user_form.as_table }}
+        {% csrf_token %}
+        <p><input type="submit" value="Создать мою учетную запись" style="background:green"></p>
+    </form>
+</div>
+{% endblock %}

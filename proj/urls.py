@@ -19,13 +19,18 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('gsk.urls')),
+    path('admin/', admin.site.urls, name='admin'),
     path('news/', include('news.urls')),
     path('forum/', include('forum.urls')),
     path('vote/', include('vote.urls')),
     path('power/', include('power.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    # path('account/', include('account.urls')),
+    path('mbr/', include('gsk.urls')),
+    path('modal/', include('modal.urls')),
+    path('bs/', include('bs.urls')),
+    path('contact/', include('contact.urls')),
+    path('', include('gsk.urls')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

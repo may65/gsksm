@@ -65,7 +65,7 @@ blockquote p {color:#000000;}
 
     </style>
 </head>
-
+{#{% include 'head.html' %}#}
 <!--<body class="home blog ctypo">-->
 {% include 'header.html' %}
 {% block breadcrumbs %}
@@ -214,6 +214,6 @@ var wpcf7 = [];
 <script type="text/javascript" src="{% static 'bootstrap.js' %}" id="bootstrap-js-js"></script>
 <script type="text/javascript" src="{% static 'jquery.superfish.js' %}" id="jquery-superfish-js"></script>
 <script type="text/javascript" src="{% static 'wp-embed.min.js' %}" id="wp-embed-js"></script>
-
+{#{% include 'script.html' %}#}
 </body>
 </html>

@@ -1,27 +1,34 @@
-{% extends "base.html" %}
+{% extends 'mbr_base.html' %}
 {#{% load cms_tags %}#}
 {% block title %}{#{% page_attribute "page_title" %}#}{% endblock title %}
 {% block breadcrumbs %}
+<span>
 {{ block.super }}
+
 <a href="{% url 'vote:log' %}">>log</a>
 <a href="{% url 'vote:votes' %}">(Опрос)</a>
-
+</span>
 {% endblock %}
 {% block content %}
+<div class="mbr-section-head"><br><br><br><br>
+    <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+        <strong>Лог Опрос</strong>
+    </h3>
+</div>
 <div style="margin:10px">
     LogAllView<br>
-<!--    <br>log:{{log}}-->
-<!--    <br>request.get={{ request.GET }}-->
-<!--    <br>log_vote_list|length={{ log_vote_list|length }}-->
-<!--    <br>log_vote_list.count={{ log_vote_list.count }}-->
-<!--    <br>log_vote_list.filter={{ log_vote_list.filter }}-->
-<!--    <br>log_vote_list.distinct={{ log_vote_list.distinct.filter }}-->
-<!--    <br>log_vote_list={{ log_vote_list }}-->
-<!--    choice_text-->
+    <!--    <br>log:{{log}}-->
+    <!--    <br>request.get={{ request.GET }}-->
+    <!--    <br>log_vote_list|length={{ log_vote_list|length }}-->
+    <!--    <br>log_vote_list.count={{ log_vote_list.count }}-->
+    <!--    <br>log_vote_list.filter={{ log_vote_list.filter }}-->
+    <!--    <br>log_vote_list.distinct={{ log_vote_list.distinct.filter }}-->
+    <!--    <br>log_vote_list={{ log_vote_list }}-->
+    <!--    choice_text-->
     <table>
         <tr>
             {% for log in log_vote_list %}
-<!--            <br>log.date_vote={{log.date_vote|date:"F j, Y"}}-->
+            <!--            <br>log.date_vote={{log.date_vote|date:"F j, Y"}}-->
             <th style="padding:1px"><a href="?order={{ column.name_toggled }}">{{ column }}</a></th>
             {% endfor %}
         </tr>
@@ -41,7 +48,7 @@
             <th style="padding:1px"><a href="?order=author">log.author</a></th>
             <th style="padding:1px"><a href="?order=choice_text">log.choice_text</a></th>
         </tr>
-<!--        |dictsort:"author"-->
+        <!--        |dictsort:"author"-->
         {% for log in log_vote_list.all %}
         <tr>
             <td style="padding:1px">{{ log.id }}</td>

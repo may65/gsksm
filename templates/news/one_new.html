@@ -1,36 +1,61 @@
 {# /templates/news/one_new.html #}
 
-{% extends 'base.html' %}
+{% extends 'mbr_base.html' %}
 
 <!-- отображать название поста как title страницы-->
 {% block title %}{{ title }}{% endblock %}
 {% block breadcrumbs %}
-{{ block.super }}
-<a href="{% url 'news:news' %}">>Новости></a>
-<a href="{% url 'news:one_new' post_slug %}">>{{post_slug}}</a>
+<span>
+    {{ block.super }}
+    <a href="{% url 'news' %}">>Новости</a>
+    <a href="{% url 'one_new' slug %}">>{{title}}</a>
+    </span>
 {% endblock %}
 {% block content %}
-<div style="display:flex">
-    {% include 'news/submenu.html' %}
+<section data-bs-version="5.1" class="timeline3 cid-tfOsqvKeh2" id="timeline3-22">
+    <div class="container">
+        <div class="timelines-container mt-4">
+            <!--            <div class="row timeline-element first-separline mb-5">-->
+            <div class="timeline-element first-separline mb-1">
+                <div class="timeline-date col-12">
+                    <div class="timeline-date-wrapper">
+                        <p class="mbr-timeline-date display-7">
+                            Автор:{{ author }}
+                            Дата:{{ time_update }}
+                        </p>
+                    </div>
+                </div>
+                <!--                <span class="iconBackground"></span>-->
+                <div class="col-12 col-md-4">
+                    <div class="image-wrapper">
+                        {% if photo %}
+                        <!--                                <img src="{#{% static 'assets/images/img-948x545.jpg' %}#}" alt="Mobirise Website Builder"-->
+                        <!--                                     title="">-->
+                        {% if file %}
+                        <a href="{{file.url}}" target="_blank">
+                            <img class="img-article-left thumb" src="{{photo.url}}" width="100" align="left"
+                                 style="margin:10px">
+                        </a>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-12 col-md-12">
+                    <div class="timeline-text-wrapper">
+                        <h4 class="mbr-timeline-title mbr-fonts-style mb-0 display-5">
+                            <strong>{{ title }}</strong></h4>
+                        <p class="mbr-text mbr-fonts-style mt-3 mb-0 display-7">
+                            <!--                                {#{{ body|truncatechars:200|safe }}#}-->
+                            {{ body|safe }}
+                            <!-- ссылаемся на полный текст поста -->
+                            <!--    <a href="{#{% url 'one_new' post.id %}#}">Читать полностью&raquo;</a>-->
+                            <!--                                <a href="{#{% url 'one_new' slug %}#}">Читать полностью&raquo;</a>-->
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-    <!--    <br>-->
-    <!--    <h1>{{ title }}</h1>-->
-    <div>
-        <p></p>
-        <h1>{{ title }}</h1>
-        Дата: {{ time_update }}
-        Автор: {{ user }}</p>
-<!--        {% if photo %}-->
-<!--        <a href="{{photo.url}}" target="blank">-->
-<!--            <img class="img-article-left" src="{{photo.url}}" width="200" align="left" style="margin:10px">-->
-<!--        </a>-->
-<!--        {% endif %}-->
-        {% if file %}
-        <a href="{{file.url}}" target="blank">
-            <img class="img-article-left" src="{{file.url}}" width="200" align="left" style="margin:10px">
-        </a>
-        {% endif %}
-        {{ body|safe|escape|linebreaks}}
+        </div>
     </div>
-</div>
+</section>
 {% endblock %}

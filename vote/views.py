@@ -125,7 +125,10 @@ def vote(request, question_id):
         })
     else:
         selected_choice.votes += 1
-        selected_choice.author = request.user
+        if request.user.is_authenticated:
+            selected_choice.author = request.user
+        else:
+            pass
         selected_choice.save()
         log = Log()
         # log = selected_choice

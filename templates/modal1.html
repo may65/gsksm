@@ -1,0 +1,160 @@
+{% load static %}
+456
+<section class="mbr-section" id="witsec-modal-window-block-1q" data-rv-view="288">
+    <div class="modal-body display-7" id="modal1_body">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <td>{{ form.username.label_tag }}</td>
+                    <td>{{ form.username }}</td>
+                </tr>
+                <tr>
+                    <td>{{ form.password.label_tag }}</td>
+                    <td>{{ form.password }}</td>
+                </tr>
+            </table>
+
+            <input type="submit" value="Войти" style="background:green"/>
+            <input type="hidden" name="next" value="{{ next }}"/>
+            <!--                            <a href="/account/register/">Регистрация нового пользователя</a>-->
+        </form>
+    </div>
+    789
+    <style>
+	/* Let's not animate the contents of modal windows */
+	.no-anim {
+		-webkit-animation: none !important;
+		-moz-animation: none !important;
+		-o-animation: none !important;
+		-ms-animation: none !important;
+		animation: none !important;
+	}
+
+
+
+
+    </style>
+
+    <div>
+        <div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1Label"
+             aria-hidden="true">
+            <div class="modal-dialog  " style="height:auto" role="document">
+                <div class="modal-content">
+                    <!--                    TITLE MODAL-->
+                    <div class="modal-header">
+                        <h5 class="no-anim modal-title display-7" id="modal1Label">
+                            Авторизация
+                        </h5>
+                        <a href="#" class="no-anim close" data-bs-dismiss="modal" data-dismiss="modal"
+                           aria-label="Close">
+                            <span aria-hidden="true">
+                                ×
+                            </span>
+                        </a>
+                    </div>
+                    <!--                    BODY MODAL-->
+                    <!--                    <div class="modal-body display-7" id="modal1_body">-->
+                    <!--                        BODY MODAL-->
+                    <!--                    </div>-->
+<!--                    <div class="modal-body display-7" id="modal1_body">-->
+<!--                        <form method="post" action="{% url 'login' %}">-->
+<!--                            {% csrf_token %}-->
+<!--                            <table>-->
+<!--                                <tr>-->
+<!--                                    <td>{{ form.username.label_tag }}</td>-->
+<!--                                    <td>{{ form.username }}</td>-->
+<!--                                </tr>-->
+<!--                                <tr>-->
+<!--                                    <td>{{ form.password.label_tag }}</td>-->
+<!--                                    <td>{{ form.password }}</td>-->
+<!--                                </tr>-->
+<!--                            </table>-->
+
+<!--                            <input type="submit" value="Войти" style="background:green"/>-->
+<!--                            <input type="hidden" name="next" value="{{ next }}"/>-->
+<!--                            &lt;!&ndash;                            <a href="/account/register/">Регистрация нового пользователя</a>&ndash;&gt;-->
+<!--                        </form>-->
+<!--                    </div>-->
+                    <!--                    MODAL Close-->
+                    <!--                    <div class="modal-footer">-->
+                    <!--                        <div class="mbr-section-btn">-->
+                    <!--                            <a href="#" class="no-anim btn btn-secondary display-4"-->
+                    <!--                               data-bs-dismiss="modal" data-dismiss="modal">-->
+                    <!--                                Close-->
+                    <!--                            </a>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
+                    <!--form-->
+                </div>
+            </div>
+        </div>
+        <script>
+document.addEventListener("DOMContentLoaded", function() {
+  if(typeof jQuery === "function") {
+    $("#modal1").on("hidden.bs.modal", function () {
+      var html = $( "#modal1_body" ).html();
+      $( "#modal1_body" ).empty();
+      $( "#modal1_body" ).append(html);
+    })
+  } else {
+      var mdw = document.getElementById("#modal1")
+      mdw.addEventListener("hidden.bs.modal", function(event) {
+        mdw.innerHTML = mdw.innerHTML;
+      });
+  }
+});
+
+
+
+
+
+        </script>
+    </div>
+
+    <script>
+	if (typeof OpenModal === 'undefined') {
+		OpenModal = function(modalName) {
+			if(typeof jQuery === "function") {
+				if ($('#' + modalName).length)
+					$('#' + modalName).modal('show');
+				else
+					alert("Sorry, but there is no modal for " + modalName);
+			} else {
+				let mdw = new bootstrap.Modal(document.getElementById(modalName), {});
+				mdw.show();
+			}
+		}
+	}
+
+	function modalSetCookie(cname, cvalue, exdays) {
+		var d = new Date();
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		var expires = "expires="+ d.toUTCString();
+		document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+	}
+
+	function modalGetCookie(cname) {
+		var name = cname + "=";
+		var decodedCookie = decodeURIComponent(document.cookie);
+		var ca = decodedCookie.split(';');
+		for(var i = 0; i <ca.length; i++) {
+			var c = ca[i];
+			while (c.charAt(0) == ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) == 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
+
+
+
+
+
+    </script>
+
+</section>

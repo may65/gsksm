@@ -8,11 +8,11 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .forms import UserForm
 
-class CustomUser(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-    zip_code = models.CharField(max_length=6)
-    def __str__(self):
-        return self.user.username
+# class CustomUser(models.Model):
+#     user = models.OneToOneField(User, on_delete=models.CASCADE)
+#     zip_code = models.CharField(max_length=6)
+#     def __str__(self):
+#         return self.user.username
 
 def home(request):
     if request.method == 'POST':
@@ -29,7 +29,7 @@ def home(request):
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
-    pub_date = models.DateTimeField('date published')
+    pub_date = models.DateTimeField('date published',auto_now=True)
     def __str__(self):
         return self.question_text
     def was_published_recently(self):
@@ -57,7 +57,7 @@ class Choice(models.Model):
     votes = models.IntegerField(default=0)
     date_vote = models.DateTimeField(auto_now=True)
     # author = models.TextField()
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE,blank=True,null=True)
     def __str__(self):
         return self.choice_text
     class Meta:

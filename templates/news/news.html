@@ -1,42 +1,112 @@
 {# djcode/pySite/templates/news/news.html #}
 
-{% extends 'base.html' %} <!-- подключаем базовый шаблон -->
-
-{% block title %}News{% endblock %}
+{% extends 'mbr_base.html' %} <!-- подключаем базовый шаблон -->
+{% load static %}
+{% block title %}новости{% endblock %}
 {% block breadcrumbs %}
-{{ block.super }}
-<a href="{% url 'news:news' %}">>Новости</a>
+<span>
+    {{ block.super }}
+    <!--<a href="{% url 'news' %}">>Новости</a>-->
+    <a href="{% url 'news' %}">>Новости</a>
+</span>
 {% endblock %}
 {% block content %}
-<div style="display:flex">
-    {#{% include 'news/submenu.html' %}#}
-    <!--    <a href="https://www.unix-lab.org/posts/django-first-steps/">news.html</a>-->
-    <div id="post">
-        {% for post in posts %} <!-- итерация по всем постам -->
-        <div style="margin:10px">
-            <!--            {% if post.photo %}-->
-            <!--            <img class="img-article-left thumb" src="{{post.photo.url}}" width="100" align="left"-->
-            <!--                 style="margin:10px">-->
-            <!--            {% endif %}-->
-            {% if post.file %}
-            <img class="img-article-left thumb" src="{{post.file.url}}" width="100" align="left"
-                 style="margin:10px">
-            {% endif %}
-            <h4>
-                <!--                <a href="{% url 'news:one_new' post.id %}">{{ post.title }}</a>-->
-                <a href="{% url 'news:one_new' post.slug %}">{{ post.title }}</a>
-            </h4>
-            {{ post.time_update }}
-            {{ post.author }}
-            <br>
-            <!-- обрезаем посты, вывод по 80 слов -->
-<!--            {{ post.body|truncatewords:50|safe }}-->
-            {{ post.body|truncatechars:100|safe }}
-            <!-- ссылаемся на полный текст поста -->
-            <!--    <a href="{% url 'news:one_new' post.id %}">Читать полностью&raquo;</a>-->
-            <a href="{% url 'news:one_new' post.slug %}">Читать полностью&raquo;</a>
+<div class="mbr-section-head">
+    <br><br><br><br>
+    <h4 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-5">
+        <strong style="color:blue">Срочные новости доступны только для авторизованных пользователей</strong>
+    </h4>
+</div>
+{% if user.is_authenticated %}
+<section data-bs-version="5.1" class="countdown1 cid-tguiajfwyw" id="countdown1-23">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!--        <div class="justify-content-center">-->
+            <div class="col-lg-8"><br><br><br><br>
+                <h3 class="mbr-section-title mb-5 align-center mbr-fonts-style display-2">
+                    <strong style="color:red">Срочно</strong>
+                </h3>
+                {% for now in nows %}
+                <h4 class="mbr-section-subtitle mb-5 align-center mbr-fonts-style display-7">
+                    {{ now.title }}
+                </h4>
+                <p>{{ now.body }}</p>
+                <div class="countdown-cont align-center mb-5">
+                    <div class="daysCountdown col-xs-3 col-sm-3 col-md-3" title="Дней"></div>
+                    <div class="hoursCountdown col-xs-3 col-sm-3 col-md-3" title="Часов"></div>
+                    <div class="minutesCountdown col-xs-3 col-sm-3 col-md-3" title="Минут"></div>
+                    <div class="secondsCountdown col-xs-3 col-sm-3 col-md-3" title="Секунд"></div>
+<!--                    <div class="countdown" data-due-date="2022/10/10"></div>-->
+                    <div class="countdown" data-due-date="{{ now.date|date:'Y/m/d' }}"></div>
+                </div>
+                Окончание:{{ now.date|date:'Y/m/d' }}
+                <p class="mbr-text mb-5 align-center mbr-fonts-style display-7">
+<!--                    Subscribe to find out when we launch.-->
+<!--                    <button type="submit" class="btn btn-primary display-4">Subscribe</button>-->
+                    <a href="{% url 'news' %}{{now.post.slug}}" class="btn btn-primary display-4">Подробнее</a>
+                </p>
+                {% endfor %}
+            </div>
         </div>
-        {% endfor %}
+        <!--        <div class="row">-->
+<!--        <div>-->
+            <div class="col-lg-4 mx-auto mbr-form" data-form-type="formoid">
+            </div>
+<!--        </div>-->
+    </div>
+</section>
+{% endif %}
+<div class="mbr-section-head">
+    <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+        <strong>Новости</strong>
+    </h3>
+</div>
+{% for post in posts %} <!-- итерация по всем постам -->
+<div class="container">
+    <div class="timelines-container mt-4">
+        <div class="row timeline-element first-separline mb-5">
+            <!--        <div class="row">-->
+            <div class="timeline-date col-12">
+                <div class="timeline-date-wrapper">
+                    <p class="mbr-timeline-date display-7">
+                        Автор:{{ post.author }}
+                        Дата:{{ post.time_update }}
+                    </p>
+                </div>
+            </div>
+            <span class="iconBackground"></span>
+            <div class="col-12 col-md-6">
+                <div class="image-wrapper">
+                    {% if post.photo %}
+                    <!--                                <img src="{% static 'assets/images/img-948x545.jpg' %}" alt="Mobirise Website Builder"-->
+                    <!--                                     title="">-->
+                    {% if post.file %}
+                    <a href="{{post.file.url}}" target="_blank">
+                        <img class="img-article-left thumb" src="{{post.photo.url}}" width="100" align="left"
+                             style="margin:10px">
+                    </a>
+                    {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-12 col-md-6">
+                <div class="timeline-text-wrapper">
+                    <a href="{% url 'one_new' post.slug %}">
+                        <h4 class="mbr-timeline-title mbr-fonts-style mb-0 display-5">
+                            <strong>{{ post.title }}</strong>
+                        </h4>
+                    </a>
+                    <p class="mbr-text mbr-fonts-style mt-3 mb-0 display-7">
+                        {{ post.body|truncatechars:200|safe }}
+                        <!-- ссылаемся на полный текст поста -->
+                        <!--    <a href="{% url 'one_new' post.id %}">Читать полностью&raquo;</a>-->
+                        <a href="{% url 'one_new' post.slug %}">Читать полностью&raquo;</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
+{% endfor %}
 {% endblock %}

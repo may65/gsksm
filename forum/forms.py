@@ -6,7 +6,7 @@ class NameForm(forms.Form):
 
 class PostForm(forms.ModelForm):
     # your_name = forms.CharField(label='Your name', max_length=100)
-    body = forms.CharField(label='Ваше сообщение',max_length=1024,widget=forms.Textarea)
+    body = forms.CharField(label='Ваше сообщение',max_length=1024,widget=forms.Textarea(attrs={ 'rows': 2}))#'cols': 80,
     class Meta:
         model = Post
         fields = ('body',)

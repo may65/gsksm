@@ -19,7 +19,7 @@ class Post(models.Model):
     body = models.TextField(verbose_name = 'текст новости')
     # timestamp = models.DateTimeField()
     author = models.ForeignKey(User,related_name='news_post', on_delete=models.CASCADE, verbose_name = 'автор')
-    # photo = models.ImageField(upload_to="photos/%Y/%m/%d/", verbose_name="Фото", null=True, blank= True)
+    photo = models.ImageField(upload_to="photos/%Y/%m/%d/", verbose_name="Фото", null=True, blank= True)
     file = models.FileField(upload_to="file/%Y/%m/%d/", verbose_name="Файл", null=True, blank= True)
     time_create = models.DateTimeField(auto_now_add=True, null=True,verbose_name = 'создан')
     time_update = models.DateField(verbose_name = 'изменен')#auto_now=True)
@@ -36,6 +36,29 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'пост'
         verbose_name_plural = 'посты'
+
+class Now(models.Model):
+    title = models.CharField(max_length=150, verbose_name = 'название срочно')
+    body = models.TextField(verbose_name = 'текст срочно')
+    # timestamp = models.DateTimeField()
+    user = models.ForeignKey(User,related_name='now_user', on_delete=models.CASCADE, verbose_name = 'автор')
+    # photo = models.ImageField(upload_to="photos/%Y/%m/%d/", verbose_name="Фото", null=True, blank= True)
+    # file = models.FileField(upload_to="file/%Y/%m/%d/", verbose_name="Файл", null=True, blank= True)
+    create = models.DateTimeField(auto_now_add=True, null=True,verbose_name = 'создан')
+    date = models.DateField(verbose_name = 'окончание')
+    post = models.ForeignKey(Post,related_name='now_post', on_delete=models.CASCADE, verbose_name = 'slug')
+    def __str__(self):
+        return self.title
+    def __unicode__(self):
+        return self.title
+        # return self.body
+    def __dir__(self):
+        return ['title','body','user','date','post']
+    def get_absolute_url(self):
+        return reverse('post', kwargs={'post_slug': self.slug})
+    class Meta:
+        verbose_name = 'срочно'
+        verbose_name_plural = 'Срочно'
 
 # (self, verbose_name=None, name=None, primary_key=False,
 #                  max_length=None, unique=False, blank=False, null=False,

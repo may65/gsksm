@@ -1,45 +1,108 @@
-{% extends 'base.html' %}
-forum/topic_id.html<br>
-
-{% block title %}Topic{% endblock %}
-<li><a href="/forum/">{% url 'forum' %}</a></li>
-<li class="last"></li>
+{% extends 'mbr_base.html' %}
+{% load static %}
+{% block title %}топик{% endblock %}
 {% block breadcrumbs %}
+<span>
 {{ block.super }}
-<a href="{% url 'forum' %}">>Форумы</a>
-<a href="{% url 'forum_id' forum_id %}">>{{forum}}</a>
-<a href="{% url 'topic_id' forum_id topic_id %}">>{{topic}}</a>
+<a href="{% url 'forum:forum' %}">>Форумы</a>
+<a href="{% url 'forum:forum_id' forum_id %}">>{{forum}}</a>
+<a href="{% url 'forum:topic_id' forum_id topic_id %}">>{{topic}}({{posts.count}})</a>
+</span>
 {% endblock %}
 {% block content %}
-<!--    <br>forum:{{forum.forum}}={{forum.count}}-->
-<!--    <br>topic.topic:{{topic.topic}}={{topic.count}}-->
-<br>Сообщений:{{posts.count}}
-<div style="margin:10px">
-    <div style="display:flex">
-        <div style="margin:10px">
-            {% if topic.file %}
-            <a href="{{topic.file.url}}" target="blank">
-                <img class="img-article-left" src="{{topic.file.url}}" width="200" align="left" style="margin:10px">
-            </a>
-            {% endif %}
-            topic:{{topic}} / date:{{topic.date}}
-            <p>body:{{topic.body}}</p>
-        </div>
-        <form action="{% url 'topic_id' forum_id topic_id %}" method="post">
-            <div>
-                {% csrf_token %}
-                {{ form.label }}
-                {{ form.body }}
-                <!--            </div>-->
-                <!--            <div>-->
-                <input type="submit" value="Отправить сообщение" style="background:orange">
-            </div>
-        </form>
-    </div>
-    {% for post in posts %}
-    user:{{post.user}} / date:{{post.date}}
-<!--    / topic:{{post.topic}}-->
-    <p>body:{{post.body}}</p>
-    {% endfor %}
+<div class="mbr-section-head">
+    <br><br><br><br>
+    <h4 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-2 display-5">
+        <strong style="color:blue">страница доступна только для авторизованных пользователей</strong>
+    </h4>
 </div>
+{% if user.is_authenticated %}
+<section data-bs-version="5.1" class="features8 cid-tgLL14c3bs" xmlns="http://www.w3.org/1999/html" id="features9-w">
+    <div class="container">
+        <div class="mbr-section-head"><br><br><br><br>
+            <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
+                <strong>Форум:{{forum.forum}} Тема:{{ topic }} Сообщения</strong>
+            </h3>
+        </div>
+        <div class="card-wrapper">
+
+            <div class="row align-items-center">
+                <!--img-->
+                <div class="col-12 col-md-2">
+                    <div class="image-wrapper">
+                        <!--                        <img src='{% static "assets/images/product1.jpg" alt="Mobirise Website Builder"%}'/>-->
+                        {% if topic.img %}
+                        <img src='{{ topic.img.url }}' alt="Mobirise Website Builder"/>
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Что такое Lorem Ipsum? -->
+                <div class="col-12 col-md">
+                    <div class="card-box">
+                        <div class="row">
+                            <!-- Что такое Lorem Ipsum? -->
+                            <div class="col-md">
+                                <h6 class="card-title mbr-fonts-style display-5">
+                                    <strong>topic:{{ topic }}</strong>
+                                </h6>
+                                <p class="mbr-text mbr-fonts-style display-7">
+                                    date:{{ topic.date }} author:{{ topic.author }}
+                                </p>
+                                <p class="mbr-text mbr-fonts-style display-7">desc:{{ topic.desc }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-wrapper">
+
+            <div class="row align-items-center">
+                <!--img-->
+                <div class="col-12 col-md-2">
+                    <b>Автор:{{request.user}}<br>
+                    Дата:{% now 'y/m/d' %}</b>
+                </div>
+                <!-- Что такое Lorem Ipsum? -->
+                <div class="col-12 col-md">
+                    <div class="card-box">
+                        <div class="row">
+                            <!-- Что такое Lorem Ipsum? -->
+                            <div class="col-md">
+                                <form action="{% url 'forum:topic_id' forum_id topic_id %}" method="post">
+                                    <div>
+                                        {% csrf_token %}
+                                        {{ form.body }}
+                                        <input type="submit" value="Отправить" style="background:orange">
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% for post in posts %}
+        <div class="card-wrapper">
+            <div class="row align-items-center">
+                <!--img-->
+                <div class="col-12 col-md-2">
+                    <b>Автор:{{request.user}}<br>
+                    Дата:{% now 'y/m/d' %}</b>
+                </div>
+                <!-- Что такое Lorem Ipsum? -->
+                <div class="col-12 col-md">
+                    <div class="card-box">
+                        <div class="row">
+                            <i>{{post.body}}</i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><br>
+        {% endfor %}
+        <!--</div>-->
+    </div>
+</section>
+{% endif %}
 {% endblock %}

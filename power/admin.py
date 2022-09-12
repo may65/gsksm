@@ -3,6 +3,11 @@ from django.contrib import admin
 # Register your models here.
 from power.models import *
 
+@admin.register(Power)
+class PowerAdmin(admin.ModelAdmin):
+    pass
+    prepopulated_fields = {"slug": ("title",)}
+    list_display = ('author', 'time_update', 'photo', 'file', 'title')
 
 @admin.register(Line)
 class LineAdmin(admin.ModelAdmin):

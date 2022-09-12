@@ -23,10 +23,12 @@ def news(request):
     #           {'id': 8, 'city': 'Смоленск'},
     #           {'id': 11, 'city': 'Калуга'}]
     posts = Post.objects.all().order_by('-time_update')
+    nows = Now.objects.all().order_by('date')
     # fields = list_fields(Post)
     # field = dir(Post())
     # t = type(field)
-    return render(request, 'news/news.html', {'posts':posts,})#'fields':fields,'field':field,'t':t})#,'cities':cities})
+    return render(request, 'news/news.html', {'posts':posts,'nows':nows,})
+    #'fields':fields,'field':field,'t':t})#,'cities':cities})
 
 # после функции news дописать
 # def one_new(request, post_id):
@@ -37,11 +39,12 @@ def one_new(request, post_slug):
     vars = dict(
         title=post.title,
         body=post.body,
-        user=post.author,
+        author=post.author,
         # photo=post.photo,
         file=post.file,
+        photo=post.photo,
         time_update=post.time_update,
-        post_slug=post_slug,
+        slug=post_slug,
     )
     return render(request,'news/one_new.html', vars)#, context_instance=RequestContext(request))
 

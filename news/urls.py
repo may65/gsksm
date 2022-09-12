@@ -2,7 +2,7 @@
 from django.urls import path, include
 from .views import *
 
-app_name = 'news'
+# app_name = 'news'
 urlpatterns = [
     # path('', include(router.urls)),
     path('', news, name='news'),
